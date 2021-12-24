@@ -26,8 +26,8 @@ jobs:
 
         deps: [rails_70]
 
-    env:
-      COVERAGE: true
+    # env:
+    #   COVERAGE: true
 
     steps:
       - uses: actions/checkout@v2
