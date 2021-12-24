@@ -26,8 +26,8 @@ jobs:
 
         deps: [rails_70]
 
-    # env:
-    #   COVERAGE: true
+    env:
+      COVERAGE: true
 
     steps:
       - uses: actions/checkout@v2
@@ -48,4 +48,10 @@ jobs:
           git config --global user.name ActiveAdmin
 
       - name: Create test app
-        run: bin/rake
+        run: bin/rake setup
+
+      - name: Run RSpec tests
+        run: |
+          bin/rspec
+          RSPEC_FILESYSTEM_CHANGES=true bin/rspec
+
