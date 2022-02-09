@@ -77,5 +77,7 @@ module ActiveAdmin
       { controller: controller, action: action }
     end
 
+    ActiveSupport.run_load_hooks(:active_admin_controller_base, self)
+    ActiveSupport.run_load_hooks(:active_admin_controller, self)
   end
 end

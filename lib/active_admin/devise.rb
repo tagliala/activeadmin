@@ -30,6 +30,9 @@ module ActiveAdmin
       included do
         layout "active_admin_logged_out"
         helper ::ActiveAdmin::ViewHelpers
+
+        ActiveSupport.run_load_hooks(:active_admin_controller_devise, self)
+        ActiveSupport.run_load_hooks(:active_admin_controller, self)
       end
 
       # Redirect to the default namespace on logout
