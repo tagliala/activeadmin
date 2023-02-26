@@ -17,7 +17,7 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -40,7 +40,7 @@ jobs:
         os: [ubuntu-20.04]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Configure bundler
         run: |
@@ -76,7 +76,7 @@ jobs:
           mv coverage/.resultset.json coverage/raw.lint.json
 
       - name: Save partial coverage as an artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: coverage
           path: coverage/raw.lint.json
@@ -119,7 +119,7 @@ jobs:
       COVERAGE: true
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Configure bundler (default)
         run: |
@@ -148,7 +148,7 @@ jobs:
         run: bin/rake setup
 
       - name: Restore cached RSpec runtimes
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tmp/parallel_runtime_rspec.log
           key: runtimes-rspec-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
@@ -159,7 +159,7 @@ jobs:
           RSPEC_FILESYSTEM_CHANGES=true bin/rspec
 
       - name: Restore cached cucumber runtimes
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tmp/parallel_runtime_cucumber.log
           key: runtimes-cucumber-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
@@ -176,7 +176,7 @@ jobs:
           mv coverage/.resultset.json coverage/raw.${{ matrix.ruby.value }}.${{ matrix.deps }}.json
 
       - name: Save partial coverage as an artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: coverage
           path: coverage/raw.${{ matrix.ruby.value }}.${{ matrix.deps }}.json
@@ -189,16 +189,16 @@ jobs:
       - test
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Download partial coverages
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: coverage
           path: coverage
 
       - name: Format, sum & upload results to Code Climate
-        uses: paambaati/codeclimate-action@v2.7.4
+        uses: paambaati/codeclimate-action@v3.2.0
         env:
           CC_TEST_REPORTER_ID: 8d5fcf7abea6d56c625104a9d1a81140a588a7f546f4fa9de9bc6ffc8feaaf70
         with:

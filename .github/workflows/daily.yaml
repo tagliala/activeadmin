@@ -25,7 +25,7 @@ jobs:
       JRUBY_OPTS: -J-Xmx1024m --dev
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Configure bundler (default)
         run: |
@@ -54,7 +54,7 @@ jobs:
         run: bin/rake setup
 
       - name: Restore cached RSpec runtimes
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tmp/parallel_runtime_rspec.log
           key: runtimes-rspec-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
@@ -65,7 +65,7 @@ jobs:
           RSPEC_FILESYSTEM_CHANGES=true bin/rspec
 
       - name: Restore cached cucumber runtimes
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tmp/parallel_runtime_cucumber.log
           key: runtimes-cucumber-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
