@@ -53,7 +53,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby.value }}
-          rubygems: 3.3.5
+          rubygems: 3.4.7
           bundler-cache: true
 
       - name: Generate docs
