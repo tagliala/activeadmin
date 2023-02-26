@@ -21,7 +21,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: jruby-9.3.4.0
+          ruby-version: jruby-9.4.1.0
 
       - name: Run bug report template
         run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
