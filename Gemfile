@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 source "https://rubygems.org"
 
+gem 'inherited_resources', path: '~/dev/inherited_resources'
+
 group :development, :test do
   gem "rake"
 
